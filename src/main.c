@@ -103,6 +103,7 @@ int main() {
       printf("- calc: runs the calculator application\n");
       printf("- exit: Exits the program\n");
       printf("- editit: A text editor");
+      printf("- li: List all the files and folders");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
