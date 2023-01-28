@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <dirent.h>
 
 void text_editor() {
     printf("Text Editor Command\n");
@@ -58,6 +59,7 @@ void calculator() {
     default:
       printf("Invalid operator\n");
   }
+  
   char exit[100];
   printf("Type exit to go back to command stage: ");
   scanf("%s",exit);
@@ -66,6 +68,21 @@ void calculator() {
   }
 }
 
+void list_files() {
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir (".")) != NULL) {
+        /* print all the files and directories within directory */
+        while ((ent = readdir (dir)) != NULL) {
+            printf ("%s\n", ent->d_name);
+        }
+        closedir (dir);
+    } else {
+        /* could not open directory */
+        perror ("");
+        return;
+    }
+}
 int main() {
     printf("def os 1.0.0\n");
   char input[100];
@@ -78,11 +95,14 @@ int main() {
       calculator();
         } else if (strcmp(input, "editit") == 0) {
             text_editor();
-    } else if (strcmp(input, "help") == 0) {
+    }
+    else if (strcmp(input, "li") == 0) {
+            list_files(); }
+     else if (strcmp(input, "help") == 0) {
       printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
       printf("- exit: Exits the program\n");
-      printf("- editit: A text editor")
+      printf("- editit: A text editor");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
