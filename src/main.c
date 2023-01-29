@@ -96,6 +96,10 @@ int main() {
         } else if (strcmp(input, "editit") == 0) {
             text_editor();
     }
+    else if (strcmp(input, "about") == 0) {
+            printf("Def os is an simple os made by Shourjjo Majumder. https://github.com/shourdev/def-os");
+    }
+
     else if (strcmp(input, "li") == 0) {
             list_files(); }
      else if (strcmp(input, "help") == 0) {
