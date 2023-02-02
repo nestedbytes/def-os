@@ -106,8 +106,9 @@ int main() {
       printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
       printf("- exit: Exits the program\n");
-      printf("- editit: A text editor");
-      printf("- li: List all the files and folders");
+      printf("- editit: A text editor\n");
+      printf("- li: List all the files and folders\n");
+      printf("- about: About this os");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
