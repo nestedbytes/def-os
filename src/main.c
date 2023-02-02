@@ -108,7 +108,7 @@ int main() {
       printf("- exit: Exits the program\n");
       printf("- editit: A text editor\n");
       printf("- li: List all the files and folders\n");
-      printf("- about: About this os");
+      printf("- about: About this os\n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
