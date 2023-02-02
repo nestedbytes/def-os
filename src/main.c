@@ -103,11 +103,14 @@ int main() {
     else if (strcmp(input, "li") == 0) {
             list_files(); }
      else if (strcmp(input, "help") == 0) {
-      printf("Commands:\n");
+           printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
       printf("- exit: Exits the program\n");
-      printf("- editit: A text editor");
-      printf("- li: List all the files and folders");
+      printf("- editit: A text editor\n");
+      printf("- li: List all the files and folders\n");
+      printf("- about: About this os\n");
+      printf("- help: List all the commands\n");
+
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
