@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 void text_editor() {
     printf("Text Editor Command\n");
@@ -67,7 +70,18 @@ void calculator() {
     return;
   }
 }
+void rmf() {
+    char file_name[100];
+    printf("Enter the name of the file you want to delete: ");
+    scanf("%s", file_name);
 
+    int status = remove(file_name);
+    if (status == 0) {
+        printf("%s was successfully deleted\n", file_name);
+    } else {
+        printf("Error deleting file\n");
+    }
+}
 void list_files() {
     DIR *dir;
     struct dirent *ent;
@@ -102,6 +116,10 @@ int main() {
 
     else if (strcmp(input, "li") == 0) {
             list_files(); }
+    else if(strcmp(input,"rmf") == 0)
+    {
+      rmf();
+    }
      else if (strcmp(input, "help") == 0) {
            printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
@@ -110,7 +128,7 @@ int main() {
       printf("- li: List all the files and folders\n");
       printf("- about: About this os\n");
       printf("- help: List all the commands\n");
-
+      printf("- rmf: Remove a file");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
