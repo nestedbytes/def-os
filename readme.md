@@ -1,2 +1,4 @@
-### Main
-So chill this was just a fun project from me I made it because I got bored so yea I will update this, so yea
+### Def-Os
+A Simple os, made in c open source.
+### Download
+The os is stil in work the os can be tested by going to the src dir.
