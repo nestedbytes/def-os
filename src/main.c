@@ -5,10 +5,41 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+
+#define MAX_PASSWORD_LENGTH 50
+#define PASSWORD_FILENAME "psw.txt"
+
+int check_password() {
+    FILE* password_file = fopen(PASSWORD_FILENAME, "r");
+    if (password_file == NULL) {
+        char new_password[MAX_PASSWORD_LENGTH];
+        printf("No password file found. Please enter a new password: ");
+        scanf("%s", new_password);
+        FILE* new_file = fopen(PASSWORD_FILENAME, "w");
+        fprintf(new_file, "%s", new_password);
+        fclose(new_file);
+        printf("Password saved. You may proceed.\n");
+        return 1;
+    } else {
+        char password[MAX_PASSWORD_LENGTH];
+        printf("Password: ");
+        scanf("%s", password);
+        char password_from_file[MAX_PASSWORD_LENGTH];
+        fscanf(password_file, "%s", password_from_file);
+        fclose(password_file);
+        if (strcmp(password, password_from_file) == 0) {
+            printf("Password accepted. You may proceed.\n");
+            return 1;
+        } else {
+            printf("Incorrect password.\n");
+            return 0;
+        }
+    }
+}
+
 int text_editor() {
-    printf("Welcome to editit 1.1.1\n");
-    printf("Made by Shourjjo Majumder,open source and contributions from many developers! https://github.com/shourdev/editit \n");
-    fflush(stdin);
+  printf("Welcome to editit 1.1.0\n");
+    printf("Made by shourdev,open source and contributions from many developers! https://github.com/shourdev/editit \n");
     printf("Enter the name of the file you want to open or create: ");
     char file_name[100];
     scanf("%s", file_name);
@@ -56,8 +87,8 @@ int text_editor() {
                     l++;
                 }
             }
-            i = j;
-            fseek(file, j, SEEK_SET);
+            i = j+1;
+            fseek(file, j+1, SEEK_SET);
         }
         else if (strcmp(input, ":catit") == 0)
         {
@@ -72,13 +103,11 @@ int text_editor() {
         else
         {
             fputs(input, file); // Write the input to the file
-            fprintf(file, "\n");
             i += strlen(input);
         }
     }
 
     fclose(file);
-
     return 0;
 }
 void calculator() {
@@ -150,7 +179,12 @@ void list_files() {
     }
 }
 int main() {
-    printf("def os 1.0.0\n");
+
+    int password_accepted = 0;
+    while (!password_accepted) {
+        password_accepted = check_password();
+    }
+    printf("def os beta \n");
   char input[100];
 
   while (1) {
