@@ -216,6 +216,7 @@ int main() {
       printf("- about: About this os\n");
       printf("- help: List all the commands\n");
       printf("- rmf: Remove a file\n");
+      printf("For more help checkout our guide at https://github.com/shourdev/def-os/wiki/Commands \n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
