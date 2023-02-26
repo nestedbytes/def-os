@@ -10,6 +10,7 @@
 #define PASSWORD_FILENAME "psw.txt"
 
 int check_password() {
+   printf("def os beta \n");
     FILE* password_file = fopen(PASSWORD_FILENAME, "r");
     if (password_file == NULL) {
         char new_password[MAX_PASSWORD_LENGTH];
@@ -184,11 +185,11 @@ int main() {
     while (!password_accepted) {
         password_accepted = check_password();
     }
-    printf("def os beta \n");
+ 
   char input[100];
 
   while (1) {
-    printf("Enter a command: ");
+    printf("defshell@def-os: ");
     scanf("%s", input);
 
     if (strcmp(input, "calc") == 0) {
@@ -214,7 +215,7 @@ int main() {
       printf("- li: List all the files and folders\n");
       printf("- about: About this os\n");
       printf("- help: List all the commands\n");
-      printf("- rmf: Remove a file");
+      printf("- rmf: Remove a file\n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
       break;
