@@ -204,7 +204,7 @@ signal(SIGINT, sigint_handler);
             text_editor();
     }
     else if (strcmp(input, "about") == 0) {
-            printf("Def-os is an simple os made by Shourjjo Majumder. https://github.com/shourdev/def-os");
+            printf("Def-os is an simple os made by Shourjjo Majumder | https://github.com/shourdev/def-os | For donation I accept bitcoin, here is my address bc1qyr4rv920xgmyht5t2cw4kqlm8pcmj4u0dkg47h \n");
     }
 	 
     else if (strcmp(input, "li") == 0) {
