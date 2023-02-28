@@ -4,11 +4,16 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <signal.h>
+
 
 
 #define MAX_PASSWORD_LENGTH 50
 #define PASSWORD_FILENAME "psw.txt"
+void sigint_handler(int sig)
+{
 
+}
 int check_password() {
    printf("def os beta \n");
     FILE* password_file = fopen(PASSWORD_FILENAME, "r");
@@ -180,6 +185,7 @@ void list_files() {
     }
 }
 int main() {
+signal(SIGINT, sigint_handler);
 
     int password_accepted = 0;
     while (!password_accepted) {
@@ -198,9 +204,9 @@ int main() {
             text_editor();
     }
     else if (strcmp(input, "about") == 0) {
-            printf("Def-os is an simple os made by Shourjjo Majumder,GitHub:https://github.com/shourdev/def-os");
+            printf("Def-os is an simple os made by Shourjjo Majumder. https://github.com/shourdev/def-os");
     }
-
+	 
     else if (strcmp(input, "li") == 0) {
             list_files(); }
     else if(strcmp(input,"rmf") == 0)
