@@ -254,6 +254,7 @@ signal(SIGINT, sigint_handler);
       printf("- about: About this os\n");
       printf("- help: List all the commands\n");
       printf("- rmf: Remove a file\n");
+      printf("- mkf: Make a folder\n");
       printf("For more help checkout our guide at https://github.com/shourdev/def-os/wiki/Commands \n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
