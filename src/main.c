@@ -10,6 +10,41 @@
 
 #define MAX_PASSWORD_LENGTH 50
 #define PASSWORD_FILENAME "psw.txt"
+void ff() {
+    char filename[1024];
+    char *path = getenv("PATH");  // get the PATH environment variable
+    char *dir, *p;
+    char filepath[2048];
+    FILE *fp;
+
+    printf("Enter a filename: ");
+    scanf("%s", filename);
+
+    // search the current directory first
+    snprintf(filepath, sizeof(filepath), "./%s", filename);
+    fp = fopen(filepath, "r");
+    if (fp != NULL) {
+        printf("File found: %s\n", filepath);
+        fclose(fp);
+        return;
+    }
+
+    // search each directory in the PATH
+    dir = strtok(path, ":");
+    while (dir != NULL) {
+        snprintf(filepath, sizeof(filepath), "%s/%s", dir, filename);
+        fp = fopen(filepath, "r");
+        if (fp != NULL) {
+            printf("File found: %s\n", filepath);
+            fclose(fp);
+            return;
+        }
+        dir = strtok(NULL, ":");
+    }
+
+    // file not found
+    printf("File not found: %s\n", filename);
+}
 void sigint_handler(int sig)
 {
 
@@ -245,6 +280,10 @@ signal(SIGINT, sigint_handler);
     {
       rmf();
     }
+        else if(strcmp(input,"ff") == 0)
+    {
+      ff();
+    }
      else if (strcmp(input, "help") == 0) {
            printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
@@ -255,6 +294,7 @@ signal(SIGINT, sigint_handler);
       printf("- help: List all the commands\n");
       printf("- rmf: Remove a file\n");
       printf("- mkf: Make a folder\n");
+      printf("- ff: Search for file");
       printf("For more help checkout our guide at https://github.com/shourdev/def-os/wiki/Commands \n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
