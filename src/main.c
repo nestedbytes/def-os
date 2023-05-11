@@ -80,12 +80,14 @@ void sigint_handler(int sig)
 
 }
 int check_password() {
-  
     FILE* password_file = fopen(PASSWORD_FILENAME, "r");
     if (password_file == NULL) {
         char new_password[MAX_PASSWORD_LENGTH];
         printf("No password file found. Please enter a new password: ");
-        scanf("%s", new_password);
+        fflush(stdout);
+        // Use getpass to get password input without displaying it
+        char* input = getpass("");
+        strncpy(new_password, input, MAX_PASSWORD_LENGTH);
         FILE* new_file = fopen(PASSWORD_FILENAME, "w");
         fprintf(new_file, "%s", new_password);
         fclose(new_file);
@@ -94,7 +96,10 @@ int check_password() {
     } else {
         char password[MAX_PASSWORD_LENGTH];
         printf("Password: ");
-        scanf("%s", password);
+        fflush(stdout);
+        // Use getpass to get password input without displaying it
+        char* input = getpass("");
+        strncpy(password, input, MAX_PASSWORD_LENGTH);
         char password_from_file[MAX_PASSWORD_LENGTH];
         fscanf(password_file, "%s", password_from_file);
         fclose(password_file);
