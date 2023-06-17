@@ -9,37 +9,8 @@
 #include <sys/wait.h>
 
 #define MAX_PASSWORD_LENGTH 50
-#define PASSWORD_FILENAME "psw.txt"
-void sa() {
-    printf("This OS is an executable which runs on tiny core linux, running this command lets you use the linux shell, so you can even remove the OS using this! So use at your own risk.\n");
-    char command[1024];
-    while(1) {
-        
-        printf("$ "); // display shell prompt
-        fgets(command, 1024, stdin); // read user input
+#define PASSWORD_FILENAME "psw.dsf"
 
-        if (strcmp(command, "exit\n") == 0) {
-            break; // exit the shell loop if user types 'exit'
-        }
-
-        // fork a new process to execute the command
-        pid_t pid = fork();
-        if (pid == -1) {
-            perror("fork");
-            exit(EXIT_FAILURE);
-        } else if (pid == 0) {
-            // child process - execute the command
-            command[strlen(command)-1] = '\0'; // remove newline character
-            execlp(command, command, NULL);
-            perror(command);
-            exit(EXIT_FAILURE);
-        } else {
-            // parent process - wait for the child to finish
-            int status;
-            waitpid(pid, &status, 0);
-        }
-    }
-}
 void ff() {
     char filename[1024];
     char *path = getenv("PATH");  // get the PATH environment variable
@@ -322,12 +293,7 @@ signal(SIGINT, sigint_handler);
     {
       ff();
     }
-           else if(strcmp(input,"sa") == 0)
-    {
-      if (check_password()) {
-        sa();
-    }
-    }
+ 
      else if (strcmp(input, "help") == 0) {
            printf("Commands:\n");
       printf("- calc: runs the calculator application\n");
@@ -339,7 +305,6 @@ signal(SIGINT, sigint_handler);
       printf("- rmf: Remove a file\n");
       printf("- mkf: Make a folder\n");
       printf("- ff: Search for file\n");
-       printf("- sa: Use the linux shell (POC)\n");
       printf("For more help checkout our guide at https://github.com/shourdev/def-os/wiki/Commands \n");
     } else if (strcmp(input, "exit") == 0) {
       printf("Exiting the os...\n");
